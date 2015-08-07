@@ -1,0 +1,129 @@
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Essentials (Global)                  | #
+# +------------------------------------------------------+ #
+############################################################
+
+# The motd and rules are now configured in the files motd.txt and rules.txt.
+<%
+def format_type(key, value, iteration, output)
+  if value.kind_of?(Hash)
+    output += %Q(#{" " * (iteration * 2)}#{key}:) + 0x0D.chr + 0x0A.chr
+
+    value.keys do |subkey, subvalue|
+      output += determine_type(subkey, subvalue, iteration + 1, output)
+    end
+  elsif value.kind_of?(Array)
+    output += %Q(#{" " * (iteration * 2)}#{key}:) + 0x0D.chr + 0x0A.chr
+
+    value.each do |subvalue|
+        output += %Q(#{" " * ((iteration + 1) * 2)} - #{subvalue}) + 0x0D.chr + 0x0A.chr
+    end
+  else
+    output += %Q(#{" " * (iteration * 2)}#{key}: #{value}) + 0x0D.chr + 0x0A.chr
+  end
+
+  return output
+end
+-%>
+
+<% node['essentials']['global'].each do |key, value| -%>
+<%= format_type(key, value, 0, "") -%>
+<% end -%>
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   EssentialsHome                     | #
+# +------------------------------------------------------+ #
+############################################################
+
+<% node['essentials']['home'].each do |key, value| -%>
+<%= format_type(key, value, 0, "") -%>
+<% end -%>
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   EssentialsEco                      | #
+# +------------------------------------------------------+ #
+############################################################
+
+# For more information, visit http://wiki.ess3.net/wiki/Essentials_Economy
+
+<% node['essentials']['eco'].each do |key, value| -%>
+<%= format_type(key, value, 0, "") -%>
+<% end -%>
+
+# worth-# defines the value of an item when it is sold to the server via /sell.
+# These are now defined in worth.yml
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   EssentialsHelp                     | #
+# +------------------------------------------------------+ #
+############################################################
+
+<% node['essentials']['help'].each do |key, value| -%>
+<%= %Q(#{key}: #{value}#{0x0D.chr}#{0x0A.chr}) -%>
+<% end -%>
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   EssentialsChat                     | #
+# +------------------------------------------------------+ #
+############################################################
+
+# This section requires the EssentialsChat.jar to work.
+
+chat:
+  <% node['essentials']['chat'].each do |key, value| -%>
+  <%= format_type(key, value, 0, "") -%>
+  <% end -%>
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 EssentialsProtect                    | #
+# +------------------------------------------------------+ #
+############################################################
+
+# This section requires the EssentialsProtect.jar to work.
+
+protect:
+  prevent:
+    <% node['essentials']['protect']['physics'].each do |key, value| -%>
+    <%= %Q(#{key}: #{value}#{0x0D.chr}#{0x0A.chr}) -%>
+    <% end -%>
+    spawn:
+      <% node['essentials']['protect']['spawn'].each do |key, value| -%>
+      <%= %Q(#{key}: #{value}#{0x0D.chr}#{0x0A.chr}) -%>
+      <% end -%>
+  creeper:
+    max-height: <%= node['essentials']['protect']['creeper']['max-height'] %>
+
+  # Disable various default physics and behaviors.
+  disable:
+    <% node['essentials']['protect']['disable'].each do |key, value| -%>
+    <%= format_type(key, value, 0, "") -%>
+    <% end -%>
+
+############################################################
+# +------------------------------------------------------+ #
+# |                EssentialsAntiBuild                   | #
+# +------------------------------------------------------+ #
+############################################################
+
+<% node['essentials']['antibuild'].each do |key, value| -%>
+<%= format_type(key, value, 0, "") -%>
+<% end -%>
+
+############################################################
+# +------------------------------------------------------+ #
+# |            Essentials Spawn / New Players            | #
+# +------------------------------------------------------+ #
+############################################################
+
+# This section requires essentialsspawn.jar to work.
+
+<% node['essentials']['spawn'].each do |key, value| -%>
+<%= format_type(key, value, 0, "") -%>
+<% end -%>
