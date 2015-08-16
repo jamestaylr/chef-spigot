@@ -1,4 +1,5 @@
 
+node.default['spigot']['directory'] = "/srv/minecraft"
 node.default['spigot']['download'] = "http://getspigot.org/spigot18/spigot_server.jar"
 
 node.default['ops'] = [
