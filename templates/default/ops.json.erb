@@ -1,0 +1,10 @@
+<%
+require 'json'
+
+@op_players = node.default['ops']
+@op_players.each do |op_player|
+  # Adds the default OP level
+  op_player['level'] = 4
+end
+%>
+<%= JSON.pretty_generate(@op_players) -%>
