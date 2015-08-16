@@ -16,34 +16,10 @@ remote_file "#{@spigot}/spigot.jar" do
   action :create
 end
 
-@templates = [
-  {
-    "location" => "#{@spigot}/server.properties",
-    "source" => "server.properties.erb"
-  },
-  {
-    "location" => "#{@spigot}/eula.txt",
-    "source" => "eula.erb"
-  },
-  {
-    "location" => "#{@spigot}/ops.json",
-    "source" => "ops.erb"
-  },
-  {
-    "location" => "#{@spigot}/spigot.yml",
-    "source" => "spigot.erb"
-  },
-  {
-    "location" => "#{@spigot}/commands.json",
-    "source" => "commands.erb"
-  }
-]
-
-@templates.each do |template|
-  Chef::Log.info("Creating Spigot template at #{template['location']}")
-
-  template template['location'] do
-    source template['source']
+# Create root configuration files
+['eula.txt', 'ops.json', 'spigot.yml', 'commands.yml', 'server.properties'].each do |config_file|
+  template "#{node['spigot']['directory']}/#{config_file}" do
+    source "#{config_file}.erb"
     owner 'root'
     group 'root'
     mode '0644'
