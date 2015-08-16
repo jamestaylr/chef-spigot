@@ -15,6 +15,11 @@ remote_file "#{@spigot}/spigot.jar" do
   mode '0644'
   action :create
 end
+remote_file "#{node['spigot']['directory']}/spigot.jar" do
+  source node['spigot']['download']
+  mode '0644'
+  action :create
+end
 
 # Create root configuration files
 ['eula.txt', 'ops.json', 'spigot.yml', 'commands.yml', 'server.properties'].each do |config_file|
