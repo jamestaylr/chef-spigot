@@ -1,0 +1,22 @@
+
+# WorldBorder plugin configuration file
+<%
+def format_type(key, value, iteration)
+  output = ""
+  if value.kind_of?(Hash)
+    output += %Q(#{" " * (iteration * 2)}#{key}:) + 0x0D.chr + 0x0A.chr
+
+    value.each do |subkey, subvalue|
+      output += format_type(subkey, subvalue, iteration + 1)
+    end
+  else
+    output += %Q(#{" " * (iteration * 2)}#{key}: #{value}) + 0x0D.chr + 0x0A.chr
+  end
+
+  return output
+end
+-%>
+
+<% node['world-border']['properties'].each do |key, value| -%>
+<%= format_type(key, value, 0) -%>
+<% end -%>
