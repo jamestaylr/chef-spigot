@@ -2,7 +2,7 @@ node.default['essentials']['spawn']['newbies'] = {
   # Should we announce to the server when someone logs in for the first time?
   # If so, use this format, replacing {DISPLAYNAME} with the player name.
   # If not, set to ''
-  'announce-format' => '&dWelcome {DISPLAYNAME}&d to the server!',
+  'announce-format' => "\'&dWelcome {DISPLAYNAME}&d to the server!\'",
 
   # When we spawn for the first time, which spawnpoint do we use?
   # Set to "none" if you want to use the spawn point of the world.
