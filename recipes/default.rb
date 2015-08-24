@@ -17,3 +17,4 @@ link "/etc/alternatives/javac" do
 end
 
 include_recipe 'spigot::essentials'
+include_recipe 'spigot::world-border'
