@@ -15,6 +15,7 @@ remote_file "#{@spigot}/spigot.jar" do
   mode '0644'
   action :create
 end
+
 remote_file "#{node['spigot']['directory']}/spigot.jar" do
   source node['spigot']['download']
   mode '0644'
