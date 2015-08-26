@@ -13,8 +13,8 @@ Vagrant.configure(2) do |config|
 
   # additional memory and cpu
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
-    v.cpus = 2
+    v.memory = 1024
+    #v.cpus = 2
   end
 
   # Bridge networks to make the machine appear as another physical device
