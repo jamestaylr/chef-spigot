@@ -5,7 +5,7 @@ node.default['spigot']['download'] = "http://getspigot.org/spigot18/spigot_serve
 node.default['ops'] = [
   {
     "name" => "",
-    "UUID" => "",
+    "UUID" => ""
   }
 ]
 

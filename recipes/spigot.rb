@@ -31,3 +31,11 @@ end
     mode '0644'
   end
 end
+
+template '/etc/bluepill/spigot.pill' do
+  source 'spigot.pill.erb'
+end
+
+bluepill_service 'spigot' do
+  action [:enable, :load, :start]
+end
