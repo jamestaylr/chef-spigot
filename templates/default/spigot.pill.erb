@@ -1,0 +1,9 @@
+Bluepill.application('spigot', log_file: '<%= node.spigot.directory %>/bluepill.log') do |app|
+  app.process('spigot') do |process|
+    process.pid_file = '/var/run/spigot.pid'
+    process.working_dir = '<%= node.spigot.directory %>'
+    process.start_command = "#{ENV["JAVA_HOME"]}/bin/java -Xms512M -Xmx1024M -XX:MaxPermSize=128M -jar spigot.jar"
+    process.daemonize = true
+  end
+end
+

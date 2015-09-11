@@ -15,6 +15,7 @@ remote_file "#{@spigot}/spigot.jar" do
   mode '0644'
   action :create
 end
+
 remote_file "#{node['spigot']['directory']}/spigot.jar" do
   source node['spigot']['download']
   mode '0644'
@@ -29,4 +30,12 @@ end
     group 'root'
     mode '0644'
   end
+end
+
+template '/etc/bluepill/spigot.pill' do
+  source 'spigot.pill.erb'
+end
+
+bluepill_service 'spigot' do
+  action [:enable, :load, :start]
 end
