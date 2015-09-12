@@ -31,4 +31,5 @@ end
 
 include_recipe 'bluepill::default'
 include_recipe 'spigot::essentials'
+include_recipe 'spigot::world-border'
 include_recipe 'spigot::spigot'
