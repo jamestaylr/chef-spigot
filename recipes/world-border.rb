@@ -1,3 +1,7 @@
+#
+# Cookbook Name:: spigot
+# Recipe:: world-border
+#
 
 @plugins = "#{node['spigot']['directory']}/plugins"
 @worldborder = "#{@plugins}/WorldBorder"

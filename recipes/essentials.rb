@@ -1,3 +1,7 @@
+#
+# Cookbook Name:: spigot
+# Recipe:: essentials
+#
 
 @plugins = "#{node['spigot']['directory']}/plugins"
 @essentials = "#{@plugins}/Essentials"

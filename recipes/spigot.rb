@@ -1,3 +1,7 @@
+#
+# Cookbook Name:: spigot
+# Recipe:: spigot
+#
 
 @spigot = node['spigot']['directory']
 
